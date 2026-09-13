@@ -1,5 +1,7 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
+import { motion } from 'framer-motion';
 import api from '../services/api';
+import Botao from '../components/Botao';
 
 export default function Login({ onLogin }: { onLogin: () => void }) {
   const [email, setEmail] = useState('');
@@ -23,12 +25,24 @@ export default function Login({ onLogin }: { onLogin: () => void }) {
   }
 
   return (
-    <div className="min-h-screen bg-bg text-white flex flex-col items-center justify-center font-[Space_Mono] px-4">
-      <h1 className="text-4xl font-black mb-8" style={{ fontFamily: 'Satoshi, sans-serif' }}>
+    <div className="min-h-screen bg-bg text-white flex flex-col items-center justify-center px-4">
+      <motion.h1
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="text-4xl font-black mb-8"
+        style={{ fontFamily: 'Satoshi, sans-serif' }}
+      >
         MV<span className="text-orange">Pro</span>
-      </h1>
+      </motion.h1>
 
-      <form onSubmit={handleSubmit} className="bg-surface border border-border rounded-2xl p-8 w-full max-w-sm">
+      <motion.form
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.15 }}
+        onSubmit={handleSubmit}
+        className="bg-surface border border-border rounded-2xl p-8 w-full max-w-sm"
+      >
         <div className="mb-4">
           <label className="block text-[11px] uppercase tracking-wider text-gray-500 mb-2">Email</label>
           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full p-3 bg-bg border border-border rounded-lg text-white focus:outline-none focus:border-orange transition-colors" placeholder="seu@email.com" />
@@ -41,10 +55,10 @@ export default function Login({ onLogin }: { onLogin: () => void }) {
 
         {erro && <p className="text-red-500 text-sm mb-4 text-center">{erro}</p>}
 
-        <button type="submit" disabled={carregando} className="w-full bg-orange text-bg font-bold py-3 rounded-lg uppercase text-sm tracking-wider transition-shadow duration-300 hover:shadow-[0_0_24px_4px_rgba(249,115,22,0.55)] disabled:opacity-50">
+        <Botao type="submit" disabled={carregando}>
           {carregando ? 'Entrando...' : 'Entrar'}
-        </button>
-      </form>
+        </Botao>
+      </motion.form>
     </div>
   );
 }
