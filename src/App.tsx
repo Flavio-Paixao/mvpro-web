@@ -1,5 +1,6 @@
 ﻿import { useState, useEffect } from 'react';
 import Login from './pages/Login';
+import Produtos from './pages/Produtos';
 
 function App() {
   const [autenticado, setAutenticado] = useState(false);
@@ -20,15 +21,15 @@ function App() {
 
   return (
     <div className="min-h-screen bg-bg text-white p-6">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-2xl font-bold" style={{ fontFamily: 'Satoshi, sans-serif' }}>
           MV<span className="text-orange">Pro</span>
         </h1>
         <button onClick={handleLogout} className="text-sm text-gray-400 underline">
           Sair
         </button>
       </div>
-      <p>Login funcionando! Proxima etapa: listar produtos aqui.</p>
+      <Produtos />
     </div>
   );
 }
